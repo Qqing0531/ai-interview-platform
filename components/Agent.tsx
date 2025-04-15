@@ -58,7 +58,7 @@ const Agent = ({userName, userId, type, interviewId, questions}: AgentProps) => 
             vapi.off('speech-end', onSpeechEnd);
             vapi.off('error', onError);
         }
-},[])
+    },[])
 
     const handleGenerateFeedback = async (messages: SavedMessage[]) => {
         console.log('Generate feedback here');
@@ -111,7 +111,7 @@ const Agent = ({userName, userId, type, interviewId, questions}: AgentProps) => 
                 }
             })
         }
-        ;
+
     }
     const handleDisconnect = async () => {
         setCallStatus(CallStatus.FINISHED);
@@ -125,7 +125,7 @@ const Agent = ({userName, userId, type, interviewId, questions}: AgentProps) => 
 
 
     return (
-            <>
+        <>
             <div className="call-view">
                 <div className="card-interviewer">
                     <div className="avatar">
@@ -142,33 +142,33 @@ const Agent = ({userName, userId, type, interviewId, questions}: AgentProps) => 
                     </div>
                 </div>
             </div>
-                {messages.length > 0 && (
-                    <div className="transcript-border">
-                        <div className="transcript">
-                            <p key={latestMessage} className={cn('transition-opacity duration-500 opacity-0', 'animate-fadeIn opacity-100')}>
-                                {latestMessage}
-                            </p>
-                        </div>
+            {messages.length > 0 && (
+                <div className="transcript-border">
+                    <div className="transcript">
+                        <p key={latestMessage} className={cn('transition-opacity duration-500 opacity-0', 'animate-fadeIn opacity-100')}>
+                            {latestMessage}
+                        </p>
                     </div>
-                )}
+                </div>
+            )}
 
-                <div className="w-full flex justify-center">
-                    {callStatus !== 'ACTIVE' ? (
-                        <button className="relative btn-call" onClick={handleCall}>
-                            <span className={cn('absolute animate-ping rounded-full opacity-75', callStatus!=='CONNECTING' && 'hidden')} />
-                                <span>
+            <div className="w-full flex justify-center">
+                {callStatus !== 'ACTIVE' ? (
+                    <button className="relative btn-call" onClick={handleCall}>
+                        <span className={cn('absolute animate-ping rounded-full opacity-75', callStatus!=='CONNECTING' && 'hidden')} />
+                        <span>
                                     {isCallInactiveOrFinished ? 'Call': '. . . '}
                                 </span>
-                        </button>
-                    ) :(
-                        <button className="btn-disconnect" onClick={handleDisconnect}>
-                            End
-                        </button>
-                    )
+                    </button>
+                ) :(
+                    <button className="btn-disconnect" onClick={handleDisconnect}>
+                        End
+                    </button>
+                )
 
-                    }
-                </div>
-            </>
+                }
+            </div>
+        </>
     )
 }
 export default Agent

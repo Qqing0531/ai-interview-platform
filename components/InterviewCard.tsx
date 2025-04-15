@@ -43,21 +43,21 @@ const InterviewCard = async ({ id, userId, role, type, techstack, createdAt }: I
                             " your skills."}
                     </p>
                 </div>
-                    <div className="flex flex-row justify-between">
-                        <DisplayTechIcons techStack={techstack} />
-                        <Button className="btn-primary">
-                            <Link
-                                href={
-                                    feedback
-                                        ? `/interview/${id}/feedback`
-                                        : `/interview/${id}`
-                                }
-                            >
-                                {feedback ? "Check Feedback" : "View Interview"}
-                            </Link>
-                        </Button>
+                <div className="flex flex-row justify-between">
+                    <DisplayTechIcons techStack={techstack} />
+                    <Button className="btn-primary">
+                        <Link
+                            href={
+                                feedback
+                                    ? `/interview/${id}/feedback`
+                                    : `/interview/${id}`
+                            }
+                        >
+                            {feedback ? "Check Feedback" : "View Interview"}
+                        </Link>
+                    </Button>
 
-                    </div>
+                </div>
             </div>
         </div>
     );

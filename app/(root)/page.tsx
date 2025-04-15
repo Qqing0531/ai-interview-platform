@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import InterviewCard from "@/components/InterviewCard";
 import {getCurrentUser} from "@/lib/actions/auth.action";
-import {getInterviewsByUserId, getLastestInterviews} from "@/lib/actions/general.action";
+import {getInterviewsByUserId, getLatestInterviews} from "@/lib/actions/general.action";
 
 
 const Page = async () => {
@@ -12,7 +12,7 @@ const Page = async () => {
 
     const [userInterviews, latestInterviews] = await Promise.all([
         await getInterviewsByUserId(user?.id!),
-        await getLastestInterviews({ userId: user?.id! })
+        await getLatestInterviews({ userId: user?.id! })
     ])
 
     const hasPastInterviews = userInterviews.length > 0;
@@ -27,7 +27,7 @@ const Page = async () => {
                         Practice on real interview questions & get instant feedback
                     </p>
                     <Button asChild className="btn-primary max-sm:w-full">
-                <Link href="/interview">Start an Interview</Link>
+                        <Link href="/interview">Start an Interview</Link>
                     </Button>
                 </div>
 
@@ -37,10 +37,10 @@ const Page = async () => {
                 <h2>Your Interviews</h2>
                 <div className="interviews-section">
                     {hasPastInterviews ? (
-                        userInterviews ?.map((interview) => (
+                        userInterviews ?.map((interview:any) => (
                             <InterviewCard {...interview} key={interview.id}/>
                         ))): (
-                            <p>You haven&apos;t taken any interviews yet</p>
+                        <p>You haven&apos;t taken any interviews yet</p>
                     )}
 
                 </div>
@@ -50,7 +50,7 @@ const Page = async () => {
                 <h2>Take an Interview</h2>
                 <div className="interviews-section">
                     {hasUpcomingInterviews ? (
-                        latestInterviews ?.map((interview) => (
+                        latestInterviews ?.map((interview:any) => (
                             <InterviewCard {...interview} key={interview.id}/>
                         ))): (
                         <p>There are no new interviews available.</p>
