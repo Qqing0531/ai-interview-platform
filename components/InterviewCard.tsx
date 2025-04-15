@@ -4,12 +4,12 @@ import { getRandomInterviewCover } from "@/lib/utils"
 import React from 'react';
 import { Button } from "./ui/button";
 import Link from "next/link";
-import DisplayTechIcons from './DisplayTechIcons'
+import DisplayTechIcons from '@/components/DisplayTechIcons'
 
 
 
 
-const InterviewCard = ({ interviewId, UserId, role, type, techstack, createdAt }: InterviewCardProps) => {
+const InterviewCard = ({ id, UserId, role, type, techstack, createdAt }: InterviewCardProps) => {
     const feedback = null as Feedback | null; // Feedback 类型是 null
     const normalizedType = /mix/gi.test(type) ? 'Mixed' : type;
     const formattedDate = dayjs(feedback?.createdAt || createdAt || Date.now()).format('MMM D, YYYY');
@@ -45,12 +45,14 @@ const InterviewCard = ({ interviewId, UserId, role, type, techstack, createdAt }
                     <div className="flex flex-row justify-between">
                         <DisplayTechIcons techStack={techstack} />
                         <Button className="btn-primary">
-                            <Link href={feedback
-                                ? '/interview/${InterviewId}/feedback'
-                                : '/interview/${InterviewId}'
-                            }>
-                                {feedback ? 'Check Feedback': 'View Interview'}
-
+                            <Link
+                                href={
+                                    feedback
+                                        ? `/interview/${id}/feedback`
+                                        : `/interview/${id}`
+                                }
+                            >
+                                {feedback ? "Check Feedback" : "View Interview"}
                             </Link>
                         </Button>
 
