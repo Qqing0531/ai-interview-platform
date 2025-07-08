@@ -1,15 +1,9 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp,getApp, getApps } from "firebase/app";
 import { getAuth } from 'firebase/auth';
 import {getFirestore} from "firebase/firestore";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyDtMSi6rjyVoQ-JLJDkeqmlciccZO2akfo",
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
     authDomain: "ai-mock-interviews-69ce0.firebaseapp.com",
     projectId: "ai-mock-interviews-69ce0",
     storageBucket: "ai-mock-interviews-69ce0.firebasestorage.app",
@@ -18,7 +12,6 @@ const firebaseConfig = {
     measurementId: "G-BZ257NN9R9"
 };
 
-// Initialize Firebase
 const app = !getApps.length ? initializeApp(firebaseConfig) : getApp();
 
 export const auth = getAuth(app);
